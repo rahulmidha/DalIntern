@@ -1,0 +1,55 @@
+﻿@using DalIntern.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+<div class="row">
+    <div class="col-lg-pull-12 page-header pull-right">
+        <img src="~/Images/dalhousieinspiring.jpg" style="max-height:100px" />
+    </div>
+</div>
+<div class="row fullpage">
+    <div class="col-md-12">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="text-center"><h2>@ViewBag.Title</h2></div>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-xs-3 col-md-2 control-label" })
+                    <div class="col-xs-9 col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-xs-3 col-md-2 control-label" })
+                    <div class="col-xs-9 col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group" >
+                    <div style="display:inline-block">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <input type="submit" value="Sign In" class="btn btn-primary" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div> 
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

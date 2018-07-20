@@ -1,0 +1,83 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using DalIntern.Models;
+using Microsoft.AspNet.Identity;
+
+namespace DalIntern.Controllers
+{
+    [Authorize]
+    public class ExploreController : Controller
+    {
+        public ActionResult Index(string searchstring = null)
+        {
+            //Create the Data Context Class
+            ExploreDbContext dbContext = new ExploreDbContext();
+
+            // Get the Top 10 Companies
+            List<CompanyModel> companiesModel = null;
+
+
+            if (searchstring == null && dbContext.Company.Count() > 0)
+            {
+                companiesModel = dbContext.Company.Take(10).ToList();
+            }
+            else
+                companiesModel = dbContext.Company.Where(x => x.companyname.Contains(searchstring)).ToList();
+
+
+            return View(companiesModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddCompanyReview(CompanyViewModel companyModel)
+        {
+            try
+            {
+                //Get the Database Context
+                ExploreDbContext dbContext = new ExploreDbContext();
+
+                // Create Company
+                CompanyModel newCompany = new CompanyModel()
+                {
+                    companyname = companyModel.CompanyName,
+                    location = companyModel.Lat + "," + companyModel.Long,
+                    overallrating = companyModel.rating, id = Guid.NewGuid().ToString()
+                };
+
+                newCompany =  dbContext.Company.Add(newCompany);
+
+                // Create Job Position
+                PositionModel newPosition = new PositionModel()
+                {
+                    id = Guid.NewGuid().ToString(),companyid = newCompany.id,
+                    overallrating = companyModel.rating, positionname = companyModel.PositionName
+                };
+
+                newPosition = dbContext.Position.Add(newPosition);
+
+                //Create Job Review
+                ReviewModel newReview = new ReviewModel()
+                {
+                    id = Guid.NewGuid().ToString(), createddate = DateTime.Now,dislikes = 0, likes=0,
+                    reviewmessage = companyModel.review, overallrating = companyModel.rating,UserId = User.Identity.GetUserId(),
+                    PositionId = newPosition.id,totalreview = 1
+                };
+
+                newReview = dbContext.Review.Add(newReview);
+
+                dbContext.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+                //Suppress Exception           
+            }
+  
+
+            return RedirectToActionPermanent("Index");
+        }
+    }
+}

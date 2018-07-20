@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2><b> BECAUSE THEY NEED YOUR HELP</b></h2>
+    <p class="lead">Help others by sharing your Interview Experience.</p>
+    <div class="row">
+        <div class="col-xs-2 col-md-2">
+            <p><a href="@Url.Action("Register","Account")" class="btn btn-primary btn-lg">SignUp</a></p>
+        </div>
+        <div class="col-xs-10 col-md-10">
+            <p><a href="@Url.Action("Login","Account")" class="btn btn-primary btn-lg">SignIn</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 card-parent">
+        <div class="homeCard">
+            <img src="~/Images/dalourmission.jpg" alt="Dal Mission">
+            <div class="container">
+                <h3 class="panel-title">Our Mission</h3>
+                <p class="panel-body">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-default">Launch Mission</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 card-parent">
+        <div class="homeCard">
+            <img src="~/Images/dalmacs.jpg" alt="Dal Mission">
+            <div class="container">
+                <h3 class="panel-title">Master of Science</h3>
+                <p class="panel-body">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-default">Launch Mission</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 card-parent">
+        <div class="homeCard">
+            <img src="~/Images/dalconnects.png" alt="Dal Mission">
+            <div class="container">
+                <h3 class="panel-title">My Career</h3>
+                <p class="panel-body">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-default">Connect</a>
+            </div>
+        </div>
+    </div>
+</div>
