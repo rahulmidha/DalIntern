@@ -4,9 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";    
 }
 
-<h2>@Model.companyname</h2>
 
 <div class="container">
+
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Explore",new { })">Explore</a></li>
+        <li class="active">@Model.companyname</li>
+    </ol>
+    <h2>@Model.companyname</h2>
+
     <div class="row">
 
         <div class="col-md-3">
@@ -29,7 +35,7 @@
                 </div>
             </div>
 
-            <div>
+            <div class="disabledStars">
                 <select class="pull-left" id="rating" name="rating" data-rating="@Model.overallrating">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -37,7 +43,7 @@
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                <button data-toggle="modal" data-target="#companyModel" class="btn btn-primary btn-md">Add Review</button>               
+                <button data-toggle="modal" data-target="#positionModel" class="btn btn-primary btn-md">Add Review</button>               
             </div>
             <div>
                 <h4>Job Profiles</h4>

@@ -20,9 +20,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="@Url.Action("Index", "Home")" style="padding: 6px 15px;"><i class="far fa-user-circle" style="color:white;font-size:30px;"></i> Dal Intern</a>               
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")" style="padding: 15px 15px;font-size:x-large;">  <strong style="color:orange">DAL</strong> Intern</a>
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
+            <div id="navbar" class="navbar-collapse collapse pull-right">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Explore", "Index", "Explore")</li>
@@ -42,18 +42,23 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <style>
+        .navbar-nav > li > a {
+            color: ivory;
+            transition: color 1s ease 0s;
+        }
+
+            .navbar-nav > li > a:hover {
+                background-color: orange !important;
+            }
+
+        .disabledStars .br-wrapper > .br-widget > a {
+            pointer-events: none;
+        }
+    </style>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
 
 
 
