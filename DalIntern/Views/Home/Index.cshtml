@@ -1,49 +1,47 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    Layout = null;
 }
 
-<div class="jumbotron">
-    <h2><b> BECAUSE THEY NEED YOUR HELP</b></h2>
-    <p class="lead">Help others by sharing your Interview Experience.</p>
-    <div class="row">
-        <div class="col-xs-2 col-md-2">
-            <p><a href="@Url.Action("Register","Account")" class="btn btn-primary btn-lg">SignUp</a></p>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DalIntern</title>
+    <link rel='stylesheet' type="text/css" href="~/Content/grid.css">
+    <link rel='stylesheet' type="text/css" href="~/Content/normalize.css">
+    <link rel='stylesheet' type="text/css" href="~/Content/landing_style.css">
+    <link rel='stylesheet' type="text/css" href="~/Content/landing_queries.css">
+    <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+</head>
+<body>
+    <header class="slide1" id="landingHeader">
+        <div style="position:absolute;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgb(0,0,0,0.5);"></div>
+        <nav style="position:relative;">
+            <div class="row">
+                <img src="~/Images/dal-logo-white.png" class="logo" alt="DalIntern-Logo">
+                <ul class="main-nav">
+                    @if (!Request.IsAuthenticated)
+                    {
+                    <li><a href="@Url.Action("About", "Home")">About Us</a></li>
+                    <li><a href="@Url.Action("Login", "Account")" class="">SignIn</a></li>
+                    <li><a href="@Url.Action("Register", "Account")" class="">SignUp</a></li>
+                    }
+                    else
+                    {
+                        <li>  @Html.ActionLink("Hey " + User.Identity.Name.Split('@')[0], "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+                    }
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="text-box">
+            <h1>Dal Intern</h1><br><h2>Rate, Review & Research Internships</h2>
+            <a class="btn btn-ghost" href="@Url.Action("Login","Account")">Look at Internships!</a>
         </div>
-        <div class="col-xs-10 col-md-10">
-            <p><a href="@Url.Action("Login","Account")" class="btn btn-primary btn-lg">SignIn</a></p>
-        </div>
-    </div>
-</div>
+    </header>
 
-<div class="row">
-    <div class="col-md-4 card-parent">
-        <div class="homeCard">
-            <img src="~/Images/dalourmission.jpg" alt="Dal Mission">
-            <div class="container">
-                <h3 class="panel-title">Our Mission</h3>
-                <p class="panel-body">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-default">Launch Mission</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 card-parent">
-        <div class="homeCard">
-            <img src="~/Images/dalmacs.jpg" alt="Dal Mission">
-            <div class="container">
-                <h3 class="panel-title">Master of Science</h3>
-                <p class="panel-body">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-default">Launch Mission</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 card-parent">
-        <div class="homeCard">
-            <img src="~/Images/dalconnects.png" alt="Dal Mission">
-            <div class="container">
-                <h3 class="panel-title">My Career</h3>
-                <p class="panel-body">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-default">Connect</a>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+</body>
+</html>
