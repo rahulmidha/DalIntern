@@ -66,3 +66,4 @@ C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\Dal
 C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\DalIntern\DalIntern\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\DalIntern\DalIntern\obj\Release\DalIntern.dll
 C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\DalIntern\DalIntern\obj\Release\DalIntern.pdb
+C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\DalIntern\DalIntern\obj\Release\DalIntern.csprojResolveAssemblyReference.cache
