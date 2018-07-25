@@ -8,15 +8,23 @@
 ///   Name:                         Date:              Description:
 ///   Rahul Midha                   25-July-2018       Class Created
 ///-----------------------------------------------------------------
-using Microsoft.AspNet.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-
-namespace DalIntern.ValidationHelper
+namespace DalIntern.Models
 {
-    interface IPasswordProperty : IIdentityValidator<string>
+    public class AddReviewViewModel
     {
-        string GetPassword { get; set; }
+        public string id { get; set; }
 
-        bool isValid { get; set; }
+        public string CompanyName { get; set; }
+
+        public string PositionName { get; set; }
+
+        public int rating { get; set; }
+
+        public string review { get; set; }
     }
 }

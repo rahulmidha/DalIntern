@@ -1,7 +1,15 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿///-----------------------------------------------------------------
+///   Namespace:      DalIntern
+///   Class:          <Class Name>
+///   Description:    <Description>
+///   Author:         Anudeep Buchhanagari        Date: 25-July-2018
+///   Notes:          
+///   Revision History:
+///   Name:                         Date:              Description:
+///   Anudeep Buchhanagari          25-July-2018       Class Created
+///   Niravsinh Jadeja              26-July-2018       Class Challenge result added
+///-----------------------------------------------------------------
+
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;

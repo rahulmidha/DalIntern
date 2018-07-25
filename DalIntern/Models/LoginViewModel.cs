@@ -1,4 +1,14 @@
-﻿using System;
+﻿///-----------------------------------------------------------------
+///   Namespace:      DalIntern
+///   Class:          <Class Name>
+///   Description:    <Description>
+///   Author:         Anudeep Buchhanagari        Date: 25-July-2018
+///   Notes:          
+///   Revision History:
+///   Name:                         Date:              Description:
+///   Anudeep Buchhanagari          25-July-2018       Class Created
+///-----------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

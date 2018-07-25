@@ -1,4 +1,14 @@
-﻿using System.Data.Entity;
+﻿///-----------------------------------------------------------------
+///   Namespace:      DalIntern
+///   Class:          <Class Name>
+///   Description:    <Description>
+///   Author:         Niravsinh Jadeja                 Date: 25-July-2018
+///   Notes:          
+///   Revision History:
+///   Name:                         Date:              Description:
+///   Niravsinh Jadeja              25-July-2018       Class Created
+///-----------------------------------------------------------------
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;

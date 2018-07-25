@@ -1,4 +1,14 @@
-﻿using System;
+﻿///-----------------------------------------------------------------
+///   Namespace:      DalIntern
+///   Class:          <Class Name>
+///   Description:    <Description>
+///   Author:         Nishanth Antony Satler       Date: 25-July-2018
+///   Notes:          
+///   Revision History:
+///   Name:                         Date:              Description:
+///   Nishanth Antony Satler        25-July-2018       Class Created
+///-----------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
