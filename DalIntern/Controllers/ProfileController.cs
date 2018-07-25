@@ -15,6 +15,7 @@ namespace DalIntern.Controllers
         // GET: Profile
         public ActionResult Index(string id)
         {
+
             if (string.IsNullOrWhiteSpace(id))
             {
                 using (ApplicationDbContext dbContext = new ApplicationDbContext())
@@ -47,6 +48,7 @@ namespace DalIntern.Controllers
 
         public ActionResult ShowProfile(string id)
         {
+
             if (!string.IsNullOrEmpty(id))
             {
                 using (ApplicationDbContext dbContext = new ApplicationDbContext())

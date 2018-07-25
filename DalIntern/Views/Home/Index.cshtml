@@ -28,8 +28,9 @@
                     <li><a href="@Url.Action("Register", "Account")" class="">SignUp</a></li>
                     }
                     else
-                    {
-                        <li>  @Html.ActionLink("Hey " + User.Identity.Name.Split('@')[0], "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+                    {                        
+                        <li>  @Html.ActionLink("Hey " + User.Identity.Name.Split('@')[0], "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Profile" })</li>
+                        <li><a href="@Url.Action("LogOff", "Account")" class="">SignOut</a></li>
                     }
                 </ul>
             </div>

@@ -102,8 +102,10 @@ textarea {
 
 .fa-thumbs-up:hover {
     color:greenyellow;
+    font-size:x-large;
 }
 
-fa-thumbs-down:hover{
+.fa-thumbs-down:hover{
     color:orangered;
+    font-size:x-large;
 }

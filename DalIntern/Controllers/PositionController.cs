@@ -77,5 +77,57 @@ namespace DalIntern.Controllers
             return RedirectToActionPermanent("Index", new { id = model.id })
 ;
         }
+
+        [HttpPost]
+        public async Task<ActionResult> LikeReview(string id)
+        {
+            if (id == null)
+                return Json(null);
+            try
+            {
+                id = id.Trim();
+                using (ExploreDbContext dbContext = new ExploreDbContext())
+                {
+                    var review =  dbContext.Review.Where(x => x.id == id).FirstOrDefault();
+                    if(review!=null)
+                    {
+                        review.likes++;
+                        await dbContext.SaveChangesAsync();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+                return Json("success", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DislikeReview(string id)
+        {
+            if (id == null)
+                return Json(null);
+            try
+            {
+                id = id.Trim();
+                using (ExploreDbContext dbContext = new ExploreDbContext())
+                {
+                    var review = dbContext.Review.Where(x => x.id == id).FirstOrDefault();
+                    if (review != null)
+                    {
+                        review.dislikes++;
+                        await dbContext.SaveChangesAsync();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Json("success", JsonRequestBehavior.AllowGet);
+        }
     }
 }

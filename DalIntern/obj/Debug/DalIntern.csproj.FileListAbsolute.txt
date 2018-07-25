@@ -64,6 +64,6 @@ C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\Dal
 C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\DalIntern\DalIntern\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\DalIntern\DalIntern\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\DalIntern\DalIntern\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\DalIntern\DalIntern\obj\Debug\DalIntern.csprojResolveAssemblyReference.cache
 C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\DalIntern\DalIntern\obj\Debug\DalIntern.dll
 C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\DalIntern\DalIntern\obj\Debug\DalIntern.pdb
+C:\Users\jebes\OneDrive\Documents\Visual Studio 2015\Projects\WebDevelopment\DalIntern\DalIntern\obj\Debug\DalIntern.csprojResolveAssemblyReference.cache

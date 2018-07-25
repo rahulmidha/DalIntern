@@ -1,0 +1,204 @@
+﻿@model DalIntern.Models.PositionModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Explore",new { })">Explore</a></li>
+        <li><a href="@Url.Action("Index","Company",new {@id=Model.companyid })">@Model.company.companyname</a></li>
+        <li class="active">@Model.positionname</li>
+    </ol>
+
+    <div class="row top-margin">
+
+        <div class="col-md-3">
+
+            <div class="row" style="float:left;">
+                @*Company Logo*@
+                <div class="col-md-12">
+                    <div class="company-item">
+                        <img src="~/Images/untitledCompany.jpg" alt="Company">
+                        <div class="content">
+                            <h3>@Model.company.companyname</h3>
+                        </div>
+                    </div>
+                </div>
+                @*Website*@
+                <div class="row top-margin">
+                    <div class="col-sm-12" style="text-align:center;">
+                        <label for="website">Website</label><br />
+                        <a id="website" target="_blank" href="@Model.company.website"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-sm-12 pull-left">
+                    <label for="positionName"></label>
+                    <h3 id="positionName">@Model.positionname</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 pull-left disabledStars">
+                    <div>
+                        <select class="rating pull-left" disabled id="rating" name="rating" data-rating="@Model.overallrating">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <button data-toggle="modal" data-target="#positionModel" class="btn btn-primary btn-md">Post a Review</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row top-margin">
+        <h2>Discussions</h2>
+        <div class="col-sm-12 pull-left">
+
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3"><input type="text" name="searchMessage" placeholder="Search" class="form-control" /></div>
+                        <div class="col-md-2"><input type="submit" value="Search" id="btnSearch" class="form-control btn btn-primary" /></div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+
+    @if (Model?.Reviews != null)
+    {
+
+        foreach (var reviewItem in Model.Reviews)
+        {
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+
+                        <div class="row">
+                            <div class="col-sm-6 pull-left">
+                                <label>Posted on @reviewItem.createddate.ToShortDateString() </label>
+                            </div>
+                            <div class="col-sm-6 text-align-right">
+
+                                @if (reviewItem.Owner.Anonymous==false)
+                                {
+                                    <a href="@Url.Action("ShowProfile","Profile",new {@id=reviewItem.Owner.Id })" style="font-weight:bolder;">
+                                        @string.Concat(reviewItem.Owner.FirstName + reviewItem.Owner.LastName)
+                                    </a>
+                                }
+                                else
+                                {
+                                    <label style="font-weight:bolder;">
+                                        Anonymous
+                                    </label>
+                                }
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-body">
+                        @reviewItem.reviewmessage
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i onclick="reviewLike('@reviewItem.id')" class="fa fa-thumbs-up">@reviewItem.likes</i>
+                            </div>
+                            <div class="col-sm-4">
+                                <i onclick="DislikeReview('@reviewItem.id')" class="fa fa-thumbs-down">@reviewItem.dislikes</i>
+                            </div>
+                            <div class="col-sm-4 text-align-right disabledStars">
+                                <select class="rating pull-right" data-rating="@reviewItem.overallrating">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+</div>
+
+
+<p style="margin-top:40px;">
+
+    @Html.ActionLink("Back to Company", "Index", "Company", new { id = Model.companyid },new {})
+</p>
+
+@{
+    Html.RenderPartial("AddReview");
+}
+
+@section Scripts{
+
+    @Scripts.Render("~/Scripts/star-rating.js")
+    <script>
+        $('.rating').barrating({
+            theme: 'fontawesome-stars'
+        });
+
+        $(".rating").each(function () {
+            $(this).barrating('set', $(this).attr("data-rating"));
+        });
+
+        function reviewLike(reviewId)
+        {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("LikeReview", "Position")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ 'id': reviewId }),
+                dataType: "json",
+                success: function () { console.log("You have liked a message"); },
+                error: function(){ console.log("error occured");}
+            });
+        }
+
+        function DislikeReview(reviewId)
+        {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DislikeReview", "Position")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ 'id': reviewId }),
+                dataType: "json",
+                success: function () { console.log("You have liked a message"); },
+                error: function(){ console.log("error occured");}
+            });
+        }
+
+        
+
+        $("i.fa").click(function()
+        {
+            var curr = Number($(this).text());
+            $(this).text(curr+1);
+        });
+
+    </script>
+}

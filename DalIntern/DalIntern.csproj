@@ -171,19 +171,27 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\ExploreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ExploreViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ValidationHelper\IPasswordProperty.cs" />
+    <Compile Include="ValidationHelper\IValidatorNode.cs" />
+    <Compile Include="ValidationHelper\PasswordProperty.cs" />
+    <Compile Include="ValidationHelper\RequireDigitValidator.cs" />
+    <Compile Include="ValidationHelper\RequiredLengthValidator.cs" />
+    <Compile Include="ValidationHelper\RequireLowerCaseValidator.cs" />
+    <Compile Include="ValidationHelper\RequireNonLetterorDigitValidator.cs" />
+    <Compile Include="ValidationHelper\RequirePassword.cs" />
+    <Compile Include="ValidationHelper\RequireUpperCaseValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-datepicker.css" />
@@ -337,12 +345,6 @@
     <Content Include="Views\Home\IndexFirst.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Explore\Index.cshtml" />

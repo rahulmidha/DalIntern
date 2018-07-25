@@ -121,10 +121,10 @@
                     <div class="panel-footer">
                         <div class="row">
                             <div class="col-sm-4">
-                                <i class="fa fa-thumbs-up">@reviewItem.likes</i>
+                                <i onclick="reviewLike('@reviewItem.id')" class="fa fa-thumbs-up">@reviewItem.likes</i>
                             </div>
                             <div class="col-sm-4">
-                                <i class="fa fa-thumbs-down">@reviewItem.dislikes</i>
+                                <i onclick="DislikeReview('@reviewItem.id')" class="fa fa-thumbs-down">@reviewItem.dislikes</i>
                             </div>
                             <div class="col-sm-4 text-align-right disabledStars">
                                 <select class="rating pull-right" data-rating="@reviewItem.overallrating">
@@ -161,5 +161,44 @@
         $('.rating').barrating({
             theme: 'fontawesome-stars'
         });
+
+        $(".rating").each(function () {
+            $(this).barrating('set', $(this).attr("data-rating"));
+        });
+
+        function reviewLike(reviewId)
+        {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("LikeReview", "Position")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ 'id': reviewId }),
+                dataType: "json",
+                success: function () { console.log("You have liked a message"); },
+                error: function(){ console.log("error occured");}
+            });
+        }
+
+        function DislikeReview(reviewId)
+        {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DislikeReview", "Position")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ 'id': reviewId }),
+                dataType: "json",
+                success: function () { console.log("You have liked a message"); },
+                error: function(){ console.log("error occured");}
+            });
+        }
+
+        
+
+        $("i.fa").click(function()
+        {
+            var curr = Number($(this).text());
+            $(this).text(curr+1);
+        });
+
     </script>
 }
