@@ -2,11 +2,11 @@
 ///   Namespace:      DalIntern
 ///   Class:          <Class Name>
 ///   Description:    <Description>
-///   Author:         Anudeep Buchhanagari        Date: 25-July-2018
+///   Author:         Rahul Midha        Date: 25-July-2018
 ///   Notes:          
 ///   Revision History:
 ///   Name:                         Date:              Description:
-///   Anudeep Buchhanagari          25-July-2018       Class Created
+///   Rahul Midha                   25-July-2018       Class Created
 ///   Niravsinh Jadeja              26-July-2018       Class Challenge result added
 ///-----------------------------------------------------------------
 
