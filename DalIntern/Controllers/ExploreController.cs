@@ -2,11 +2,11 @@
 ///   Namespace:      DalIntern
 ///   Class:          <Class Name>
 ///   Description:    <Description>
-///   Author:         Rahul Midha                Date: 25-July-2018
+///   Author:         Anudeep Buchhanagar          Date: 25-July-2018
 ///   Notes:          
 ///   Revision History:
 ///   Name:                         Date:              Description:
-///   Rahul Midha                   25-July-2018       Class Created
+///   Anudeep Buchhanagari          25-July-2018       Class Created
 ///-----------------------------------------------------------------
 
 using System;
