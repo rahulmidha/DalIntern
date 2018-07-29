@@ -37,14 +37,7 @@
                     <a href="@Url.Action("Index","Company",new { id = item.id})" class="col-sm-6 col-md-3" style="margin-top:10px;margin-bottom:10px;cursor: pointer;">
 
                         <div class="container company-item">
-                            @if (item.logourl == null)
-                            {
-                                <img src="~/Images/untitledCompany.jpg" alt="Company">
-                            }
-                            else
-                            {
-                                <img src="@item.logourl" alt="Company" style="max-width:200px;max-height:200px;">
-                            }
+                            <img src="~/Images/@item.companyimage" alt="Company" style="max-width:200px;max-height:200px;">
                             <div class="content">
                                 <h3>@Html.DisplayFor(modelItem => item.companyname)</h3>
                                 <p>@Html.DisplayFor(modelItem => item.description)</p>

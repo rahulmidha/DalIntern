@@ -21,6 +21,8 @@ namespace DalIntern.Models
 
         public string CompanyName { get; set; }
 
+        public string CompanyImage { get; set; }
+
         public string PositionName { get; set; }
 
         public int rating { get; set; }

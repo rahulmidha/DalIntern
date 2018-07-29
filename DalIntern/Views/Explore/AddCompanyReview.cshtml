@@ -7,7 +7,7 @@
                 <h4 class="modal-title">Add Company Review</h4>
             </div>
             <div class="modal-body">
-                @using (Html.BeginForm("AddCompanyReview", "Explore", FormMethod.Post, new { }))
+                @using (Html.BeginForm("AddCompanyReview", "Explore", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     <button class="btn btn-primary pull-right">Submit</button>
                     <div class="form-group">
@@ -24,6 +24,10 @@
                     </div>
                     <div class="form-group">
                         <input type="text" name="PositionName" placeholder="Position" class="form-control" />
+                    </div>
+                    <div>
+                        <label for="CompanyImage" class="control-label">Company Image</label>
+                        <input type="file" runat="server" class="form-control" name="CompanyImage" id="CompanyImage" accept="Images/*" multiple>
                     </div>
                     <div class="form-group">
                         <textarea class="form-control" style="resize:none;max-width:100%;width:100%; height:150px;" name="review" placeholder="Review"></textarea>

@@ -19,9 +19,11 @@ using Microsoft.AspNet.Identity;
 
 namespace DalIntern.Controllers
 {
+
     [Authorize]
     public class ExploreController : Controller
     {
+
         public ActionResult Index(string searchstring = null)
         {
             //Create the Data Context Class
@@ -30,35 +32,54 @@ namespace DalIntern.Controllers
             // Get the Top 10 Companies
             List<CompanyModel> companiesModel = null;
 
-
             if (searchstring == null && dbContext.Company.Count() > 0)
             {
                 companiesModel = dbContext.Company.Take(10).ToList();
             }
             else
                 companiesModel = dbContext.Company.Where(x => x.companyname.Contains(searchstring)).ToList();
-
+                
 
             return View(companiesModel);
         }
 
+
         [HttpPost]
-        public ActionResult AddCompanyReview(CompanyViewModel companyModel)
+        public ActionResult AddCompanyReview(CompanyViewModel companyModel, HttpPostedFileBase CompanyImage)
         {
+
+            string strPath = Server.MapPath("~/Images/");
+
             try
             {
                 //Get the Database Context
                 ExploreDbContext dbContext = new ExploreDbContext();
+
+                if (companyModel.CompanyImage == null)
+                {
+                    companyModel.CompanyImage = "untitledCompany.jpg";
+                }
+                else
+                {
+                    companyModel.CompanyImage = CompanyImage.FileName;
+                    string path = System.IO.Path.Combine(strPath, companyModel.CompanyImage);
+                    CompanyImage.SaveAs(path);
+                    System.Diagnostics.Debug.WriteLine("Saved");
+                }
 
                 // Create Company
                 CompanyModel newCompany = new CompanyModel()
                 {
                     companyname = companyModel.CompanyName,
                     location = companyModel.Lat + "," + companyModel.Long,
-                    overallrating = companyModel.rating, id = Guid.NewGuid().ToString()
+                    overallrating = companyModel.rating, id = Guid.NewGuid().ToString(),
+                    companyimage = companyModel.CompanyImage
                 };
 
                 newCompany =  dbContext.Company.Add(newCompany);
+
+          
+
 
                 // Create Job Position
                 PositionModel newPosition = new PositionModel()
