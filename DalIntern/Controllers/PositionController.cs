@@ -74,7 +74,7 @@ namespace DalIntern.Controllers
                         newReview.PositionId = model.id;
                         newReview.UserId = User.Identity.GetUserId();
 
-                        context.Review.Add(newReview);
+                        context.AddReviewModel(newReview);
                         await context.SaveChangesAsync();
                     }
                 }

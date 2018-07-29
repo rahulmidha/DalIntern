@@ -17,5 +17,20 @@ namespace DalIntern
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            try
+            {
+                Exception ex = Server.GetLastError();
+                Server.ClearError();
+                string message = ex.Message;
+                Response.Redirect("/Home/Error");
+            }
+            catch (Exception)
+            {
+            }
+        }
     }
 }

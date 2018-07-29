@@ -125,6 +125,12 @@ namespace DalIntern.Controllers
                     LastName = model.LastName,FirstName=model.FirstName,
                     DateOfBirth = model.Date,Gender = model.Gender,Anonymous = model.Anonymous
                 };
+                if(model.Email==null || !model.Email.ToLower().EndsWith("dal.ca"))
+                {
+                    ModelState.AddModelError("", "Please register using your DAL Login ID");
+                    return View(model);
+                }
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

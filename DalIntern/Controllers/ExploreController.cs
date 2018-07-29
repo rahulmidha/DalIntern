@@ -67,7 +67,7 @@ namespace DalIntern.Controllers
                     overallrating = companyModel.rating, positionname = companyModel.PositionName
                 };
 
-                newPosition = dbContext.Position.Add(newPosition);
+                newPosition = dbContext.AddPositionModel(newPosition);
 
                 //Create Job Review
                 ReviewModel newReview = new ReviewModel()
@@ -77,7 +77,7 @@ namespace DalIntern.Controllers
                     PositionId = newPosition.id,totalreview = 1
                 };
 
-                newReview = dbContext.Review.Add(newReview);
+                newReview = dbContext.AddReviewModel(newReview);
 
                 dbContext.SaveChanges();
 

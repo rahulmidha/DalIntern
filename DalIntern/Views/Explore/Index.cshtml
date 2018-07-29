@@ -12,7 +12,7 @@
         {
             <div class="form-group">
                 <input type="text" name="searchstring" id="searchstring" class="form-control" style="display:inline;">
-                <a class="btn btn-md glyphicon glyphicon-search form-control-feedback" style="display:inline;margin-left:-47px"></a>
+                <button type="submit" class="btn btn-md glyphicon glyphicon-search form-control-feedback" style="display:inline;margin-left:-47px;background:none;"></button>
             </div>
         }
 
@@ -37,7 +37,14 @@
                     <a href="@Url.Action("Index","Company",new { id = item.id})" class="col-sm-6 col-md-3" style="margin-top:10px;margin-bottom:10px;cursor: pointer;">
 
                         <div class="container company-item">
-                            <img src="~/Images/untitledCompany.jpg" alt="Company">
+                            @if (item.logourl == null)
+                            {
+                                <img src="~/Images/untitledCompany.jpg" alt="Company">
+                            }
+                            else
+                            {
+                                <img src="@item.logourl" alt="Company" style="max-width:200px;max-height:200px;">
+                            }
                             <div class="content">
                                 <h3>@Html.DisplayFor(modelItem => item.companyname)</h3>
                                 <p>@Html.DisplayFor(modelItem => item.description)</p>

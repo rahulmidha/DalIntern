@@ -19,7 +19,14 @@
             <div class="row" style="float:left;">
                 <div class="col-md-12">
                     <div class="company-item">
+                        @if (Model.logourl == null)
+                        {
                         <img src="~/Images/untitledCompany.jpg" alt="Company">
+                        }
+                        else
+                        {
+                            <img src="@Model.logourl" alt="Company"  style="max-width:200px;max-height:200px;">
+                        }
                         <div class="content">
                             <h3>@Model.companyname</h3>
                         </div>
@@ -31,7 +38,7 @@
             <div class="row">
                 <div class="col-sm-12 pull-left">
                     <label for="website">Website :</label>
-                    <a id="website" target="_blank" href="@Model.website"></a>
+                    <a id="website" target="_blank" href="@Model.website">@Model.website</a>
                 </div>
             </div>
 

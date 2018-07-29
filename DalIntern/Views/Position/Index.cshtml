@@ -22,7 +22,14 @@
                 @*Company Logo*@
                 <div class="col-md-12">
                     <div class="company-item">
-                        <img src="~/Images/untitledCompany.jpg" alt="Company">
+                        @if (Model.company==null && Model.company.logourl == null)
+                        {
+                            <img src="~/Images/untitledCompany.jpg" alt="Company">
+                        }
+                        else
+                        {
+                            <img src="@Model.company.logourl" alt="Company" style="max-width:200px;max-height:200px;">
+                        }
                         <div class="content">
                             <h3>@Model.company.companyname</h3>
                         </div>

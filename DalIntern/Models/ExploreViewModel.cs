@@ -17,6 +17,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Web.Mvc;
+using DalIntern.RatingAggregator;
 
 namespace DalIntern.Models
 {
@@ -25,6 +26,7 @@ namespace DalIntern.Models
         public ExploreDbContext()
             : base("DefaultConnection")
         {
+            
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -39,6 +41,28 @@ namespace DalIntern.Models
         public DbSet<PositionModel> Position { get; set; }
 
         public DbSet<ReviewModel> Review { get; set; }
+
+        public PositionModel AddPositionModel(PositionModel model)
+        {
+            PositionModel newModel = Position.Add(model);
+            IRatingAggregator ratingAggregator = new RatingAggregator.RatingAggregator(this);
+
+            ratingAggregator.OnInsertOfPositionRecord(newModel);
+
+            return newModel;                      
+        }
+
+
+        public ReviewModel AddReviewModel(ReviewModel model)
+        {
+            ReviewModel newModel = Review.Add(model);
+            IRatingAggregator ratingAggregator = new RatingAggregator.RatingAggregator(this);
+
+            ratingAggregator.OnInsertOfReviewRecord(newModel);
+
+            return newModel;
+        }
+
     }
 
 }

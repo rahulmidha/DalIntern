@@ -67,7 +67,7 @@ namespace DalIntern.Controllers
                     jobPosition.positionname = model.PositionName;
                     jobPosition.totalrevies = 1;
 
-                    dbContext.Position.Add(jobPosition);
+                    dbContext.AddPositionModel(jobPosition);
 
                     ReviewModel reviewMessage = new ReviewModel();
                     reviewMessage.id = Convert.ToString(Guid.NewGuid());
@@ -77,7 +77,7 @@ namespace DalIntern.Controllers
                     reviewMessage.reviewmessage = model.review;
                     reviewMessage.UserId = User.Identity.GetUserId();
 
-                    dbContext.Review.Add(reviewMessage);
+                    dbContext.AddReviewModel(reviewMessage);
                     await dbContext.SaveChangesAsync();                   
                 }
             }

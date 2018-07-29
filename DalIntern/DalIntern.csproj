@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\ExploreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -187,6 +188,8 @@
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatingAggregator\IRatingAggregator.cs" />
+    <Compile Include="RatingAggregator\RatingAggregator.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ValidationHelper\IPasswordProperty.cs" />
     <Compile Include="ValidationHelper\IValidatorNode.cs" />
@@ -361,6 +364,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Profile\ShowProfile.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

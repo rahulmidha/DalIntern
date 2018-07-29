@@ -16,6 +16,7 @@ using System.Web;
 using System.Web.Mvc;
 using DalIntern.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DalIntern.Controllers
 {
@@ -87,5 +88,41 @@ namespace DalIntern.Controllers
             return View("Error", new HandleErrorInfo(new Exception("Access is denied."), nameof(ProfileController), "Show Profile"));
         }
 
+        [HttpPost]
+        public ActionResult UpdateProfile(ProfileViewModel model)
+        {
+            try
+            {
+
+                using (ApplicationDbContext dbContext = new ApplicationDbContext())
+                {
+                    try
+                    {
+
+                        var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+                        var manager = new UserManager<ApplicationUser>(store);
+                        var currentUser = manager.FindById(User.Identity.GetUserId());
+                        if(currentUser==null)
+                        {
+                            return View("Index", model);
+                        }
+                        currentUser.PhoneNumber = model.PhoneNumber;
+                        currentUser.LastName = model.LastName;
+                        currentUser.FirstName = model.FirstName;
+
+                        manager.UpdateAsync(currentUser);
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError("", ex.Message);
+                    }                    
+                }
+
+            }
+            catch (Exception)
+            {
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
