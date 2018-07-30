@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";    
 }
 
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <div class="container">
 
     <ol class="breadcrumb">
@@ -19,14 +19,7 @@
             <div class="row" style="float:left;">
                 <div class="col-md-12">
                     <div class="company-item">
-                        @if (Model.logourl == null)
-                        {
-                        <img src="~/Images/untitledCompany.jpg" alt="Company">
-                        }
-                        else
-                        {
-                            <img src="@Model.logourl" alt="Company"  style="max-width:200px;max-height:200px;">
-                        }
+                         <img src="~/Images/@Model.companyimage" alt="Company"  style="max-width:200px;max-height:200px;">
                         <div class="content">
                             <h3>@Model.companyname</h3>
                         </div>
@@ -77,14 +70,8 @@
         <div class="col-md-9">
             <!-- company detail section-->
             <h2 class="details_heading">Details</h2>
-            <p class="details_body">
-                Ut enim nisi, fermentum sed elementum a, vulputate non sapien. Donec gravida lobortis odio, a sodales leo tempor ac.
-                Fusce condimentum dui turpis. Morbi turpis tortor, vestibulum vitae nisi id, ultrices suscipit enim.
-                Vestibulum fermentum, urna quis auctor blandit, elit elit pretium erat, dictum varius justo magna non justo.
-                Ut suscipit est ac turpis tincidunt, id aliquam felis lobortis. Aenean et laoreet metus.
-                Proin ornare leo vel eros maximus tempus. Suspendisse justo tortor, vehicula id sem ut, bibendum aliquam ligula.
-                Cras placerat porttitor odio vel bibendum. Duis purus sem, luctus sit amet velit vitae, efficitur gravida orci.
-                Nulla tristique augue non arcu aliquam eleifend. Proin sem nisi, venenatis sit amet blandit eu, posuere id sem.
+            <p class="details_body" id="details_body">
+                @Model.companyname @Model.address
             </p>
 
             <!-- benefits section -->
@@ -107,13 +94,38 @@
                 <div id="map" style="height:300px"></div>
                 <script>
                     function myMap() {
-                        var myCenter = new google.maps.LatLng(37.332067, -122.03159);
-                        var mapCanvas = document.getElementById("map");
-                        var mapOptions = { center: myCenter, zoom: 5 };
-                        var map = new google.maps.Map(mapCanvas, mapOptions);
-                        var marker = new google.maps.Marker({ position: myCenter });
-                        marker.setMap(map);
+                        //Added by Anudeep
+                        var myCity = "@Model.companyname @Model.address";
+                        var addLat;
+                        var addLon;
+
+                        $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + myCity, function (data) {
+
+                            $.each(data, function (key, val) {
+
+                                addLat = val[0]['geometry']['location'].lat;
+                                addLon = val[0]['geometry']['location'].lng;
+
+                                checkThis(addLat, addLon);
+
+                            });
+                        });
+                      
+                        function checkThis(a, b) {
+                            console.log(a);
+                            console.log(b);
+
+                            //var myCenter = new google.maps.LatLng(37.332067, -122.03159);
+                            var myCenter = new google.maps.LatLng(a, b);
+                            //Added by Anudeep
+                            var mapCanvas = document.getElementById("map");
+                            var mapOptions = { center: myCenter, zoom: 14 };
+                            var map = new google.maps.Map(mapCanvas, mapOptions);
+                            var marker = new google.maps.Marker({ position: myCenter });
+                            marker.setMap(map);
+                        }
                     }
+
                 </script>
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcWG-8IEmtF84XAjmYNWX98u_IqPp7CwU&callback=myMap"></script>
             </p>
