@@ -39,7 +39,6 @@ function GetQueryParameterValue(paramName) {
     }
 }
 
-
 // Accessing GeoLocation API
 
 function Call() {

@@ -23,11 +23,11 @@ namespace DalIntern
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            CreateAdminUser();
+            //CreateAdminUser();
         }
 
 
-        private void CreateAdminUser()
+        /*private void CreateAdminUser()
         {
             ApplicationDbContext context = new ApplicationDbContext();
 
@@ -53,6 +53,6 @@ namespace DalIntern
                 }
 
             }
-        }
+        }*/
     }
 }

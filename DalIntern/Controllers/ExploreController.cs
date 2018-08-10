@@ -16,10 +16,11 @@ using System.Web;
 using System.Web.Mvc;
 using DalIntern.Models;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
+using RestSharp;
 
 namespace DalIntern.Controllers
 {
-
     [Authorize]
     public class ExploreController : Controller
     {
@@ -49,6 +50,25 @@ namespace DalIntern.Controllers
         {
 
             string strPath = Server.MapPath("~/Images/");
+            var client = new RestClient("https://company.clearbit.com/v1/companies/domain/"+ companyModel.CompanyName + ".com");
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("postman-token", "a63ec061-84d4-aead-9f69-645c25d446f1");
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("authorization", "Basic c2tfODU1ZDg1NWM4YzE4YWY5MzY5ZDZmNThlMTMwMGFjNDI6");
+            IRestResponse response = client.Execute(request);
+            System.Diagnostics.Debug.WriteLine("##################################");
+            System.Diagnostics.Debug.WriteLine(response.Content);
+            System.Diagnostics.Debug.WriteLine("##################################");
+            //Dictionary<string, string> values = JsonConvert.DeserializeObject<Dictionary<string, string>>(response.Content);
+            //System.Diagnostics.Debug.WriteLine(values);
+            Dictionary<string, object> values = JsonConvert.DeserializeObject<Dictionary<string, object>>(response.Content);
+            System.Diagnostics.Debug.WriteLine(values.Count);
+            System.Diagnostics.Debug.WriteLine(values["description"]);
+
+            String api_description = values["description"]+ @"<br />"+
+                                     "Founded in: " +values["foundedYear"]+ @"<br />" +
+                                     "Headquarters: "+values["location"]+ @"<br />" +
+                                     "Contact: "+values["phone"];
 
             try
             {
@@ -72,11 +92,15 @@ namespace DalIntern.Controllers
                 {
                     companyname = companyModel.CompanyName,
                     //location = companyModel.Lat + "," + companyModel.Long,
+                    description = api_description,
                     overallrating = companyModel.rating,
                     id = Guid.NewGuid().ToString(),
                     companyimage = companyModel.CompanyImage,
                     address = companyModel.city
-                };
+
+                    
+                    
+            };
 
                 newCompany = dbContext.Company.Add(newCompany);
 

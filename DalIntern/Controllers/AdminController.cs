@@ -86,6 +86,7 @@ namespace DalIntern.Controllers
                
                 if (model != null)
                 {
+                    System.Diagnostics.Debug.WriteLine(model);
                     dbContext.Company.Remove(model);
                 }
 
