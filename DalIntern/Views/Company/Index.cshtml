@@ -74,7 +74,7 @@
             <!-- company detail section-->
             <h2 class="details_heading">Details</h2>
             <p class="details_body" id="details_body">
-                @Model.description
+                @Html.Raw(HttpUtility.HtmlDecode(Model.description))
             </p>
 
             

@@ -56,14 +56,11 @@ namespace DalIntern.Controllers
             request.AddHeader("cache-control", "no-cache");
             request.AddHeader("authorization", "Basic c2tfODU1ZDg1NWM4YzE4YWY5MzY5ZDZmNThlMTMwMGFjNDI6");
             IRestResponse response = client.Execute(request);
-            Dictionary<string, object> values = JsonConvert.DeserializeObject<Dictionary<string, object>>(response.Content);
-            System.Diagnostics.Debug.WriteLine(values.Count);
-            System.Diagnostics.Debug.WriteLine(values["description"]);
-
-            String api_description = values["description"]+
-                                     "Founded in: " +values["foundedYear"]+
-                                     "Headquarters: "+values["location"]+
-                                     "Contact: "+values["phone"];
+            Dictionary<string, object> values = JsonConvert.DeserializeObject<Dictionary<string, object>>(response.Content);                                          
+            String api_description = values["description"]+"<br/><br/>"+
+                                     "<b>Founded in:</b> " +values["foundedYear"]+"<br/>"+
+                                     "<b>Headquarters:</b> " + values["location"]+"<br/>"+
+                                     "<b>Contact:</b> " + values["phone"];
 
             try
             {
