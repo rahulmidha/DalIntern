@@ -12,6 +12,7 @@
         <li class="active">@Model.companyname</li>
     </ol>
     <h2>@Model.companyname</h2>
+    <br />
 
     <div class="row">
 
@@ -19,21 +20,21 @@
             <div class="row" style="float:left;">
                 <div class="col-md-12">
                     <div class="company-item">
-                         <img src="~/Images/@Model.companyimage" alt="Company"  style="max-width:200px;max-height:200px;">
-                        <div class="content">
-                            <h3>@Model.companyname</h3>
-                        </div>
-                    </div>
-                </div>
+                        <img src="~/Images/@Model.companyimage" alt="Company" style="max-width:200px;max-height:200px;">
 
+                    </div>
+                    <br />
+                </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12 pull-left">
                     <label for="website">Website :</label>
-                    <a id="website" target="_blank" href="@Model.website">@Model.website</a>
+                    <a id="website" target="_blank" href=@("http://www."+Model.companyname+".com")>@("www." + Model.companyname + ".com")</a>
                 </div>
+
             </div>
+
 
             <div class="disabledStars">
                 <select class="pull-left" id="rating" name="rating" data-rating="@Model.overallrating">
@@ -43,18 +44,20 @@
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
+                <br />
                 <button data-toggle="modal" data-target="#positionModel" class="btn btn-primary btn-md">Add Review</button>
             </div>
+            <br/>
             <div>
                 <h4>Job Profiles</h4>
                 <ul style="list-style-type:none">
                     @{
-                        if(Model!=null && Model.Positions!=null)
+                        if (Model != null && Model.Positions != null)
                         {
-                            foreach(var pos in Model.Positions)
+                            foreach (var pos in Model.Positions)
                             {
                                 <li>
-                                    @Html.ActionLink(pos.positionname, "Index", "Position", new { id = pos.id }, new {  })
+                                    @Html.ActionLink(pos.positionname, "Index", "Position", new { id = pos.id }, new { })
                                 </li>
                             }
                         }

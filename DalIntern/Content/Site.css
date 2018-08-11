@@ -70,11 +70,12 @@ textarea {
 
 .company-item {
     position: relative;
-    max-width: 200px;
+    width: 200px;
+    height: 200px;
     margin: 0 auto;
 }
 
-.company-item img {vertical-align: middle;}
+.company-item img {vertical-align: middle; width: 200px; height: 200px;}
 
 .company-item .content {
     position: absolute;
